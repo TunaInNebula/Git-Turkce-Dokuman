@@ -1,0 +1,147 @@
+- git status :
+	- Açıklama: Bu komut, çalışma dizininizdeki değişiklikleri gösterir.
+	- Kullanım: `git status` komutunu çalıştırdığınızda, hangi dosyaların değiştirildiğini, hangilerinin eklenip beklendiğini ve hangilerinin henüz eklenmediğini gösterir.
+- git log :
+	- Açıklama: Bu komut, projenizdeki commit geçmişini görüntüler.
+	- Kullanım: `git log` komutunu çalıştırdığınızda, projenizdeki commitlerin listesini ve her commitin tarihini, yazarını ve mesajını gösterir.
+- git add : 
+	- Açıklama: Bu komut, çalışma dizinindeki değişiklikleri "staging area" olarak adlandırılan geçici bir bölgeye ekler. Yani, bu değişikliklerin bir sonraki commit'e dahil edilmesi için hazır hale getirir.
+	- Kullanım: `git add <dosya_adı>` veya `git add .` (tüm değişiklikleri ekler) şeklinde kullanılır.
+- git commit :
+	- Açıklama: Bu komut, "staging area"da bulunan değişiklikleri bir commit olarak kaydeder.
+	- Kullanım: `git commit -m "Commit mesajı"` şeklinde kullanılır. Burada "Commit mesajı", yapmış olduğunuz değişiklikleri açıklayan bir kısa açıklamadır ve her commit için benzersiz olmalıdır.
+- git restore :
+	- Açıklama: Bu komut, çalışma dizinindeki değişiklikleri geri almanızı veya belirli dosyaları veya dizinleri eski bir duruma getirmenizi sağlar. Yani, "staging area"da olmayan değişiklikleri veya geri almak istediğiniz önceki bir commit durumunu geri yüklemenize yardımcı olur.
+	- örnek kullanım: 
+		- `git restore <dosya_adı>
+			- Belirli bir dosyanın son değişikliklerini geri almak için:
+		- `git restore --staged .
+			- Tüm çalışma dizinini son commit durumuna geri almak için:
+		- `git restore --source=HEAD --staged <dosya_adı>
+			- Belirli bir dosyanın son commit durumuna geri almak için:
+		- `git restore --source=HEAD --staged --worktree <dosya_adı>
+			- Belirli bir dosyanın son commit durumuna geri almak ve çalışma dizinindeki değişiklikleri de silmek için:
+- git branch:
+	- Açıklama: Bu komut, mevcut Git deposundaki tüm mevcut dalları (branches) listeler. Ayrıca, hangi dalın (branch) şu anda aktif olduğunu da gösterir.
+	- örnek kullanımı:
+		- `git branch
+			- Tüm dalları listelemek için:
+		- `git branch <yeni_dal_adı>
+			- Yeni bir dal (branch) oluşturmak için:
+		- `git checkout <hedef_dal_adı>
+			- Aktif dalı (branch) değiştirmek için:
+		- `git checkout -b <yeni_dal_adı>
+			- Yeni bir dal (branch) oluşturup hemen bu dala geçmek için:
+		- `git branch -d <silinecek_dal_adı>
+			- Bir dalı (branch) silmek için:
+		- `git branch -D <silinecek_dal_adı>
+			- Bir dalı (branch) silmek ve silinmeyen değişiklikleri atlamak için (dikkatli kullanılmalıdır):
+		- `git switch <hedef dal adı>
+			- branchler arasında geçiş yapmak için checkouttan daha kullanışlı bu amaca yönelik bir komut
+- git switch:
+	- Açıklama: Bu komut, Git deposundaki farklı dallar (branches) arasında geçiş yapmanıza ve çalışma dizininin içeriğini seçtiğiniz dala (branch) göre güncellemenize olanak tanır.
+	- örnek kullanım:
+		- `git switch <hedef_dal_adı>
+			- Bir dalı (branch) değiştirmek için:
+		- `git switch -c <yeni_dal_adı>
+			- Yeni bir dal (branch) oluşturup hemen bu dala geçmek için:
+		- `git switch -m <hedef_dal_adı>
+			- Eğer var olan bir dalı (branch) değiştirirken çalışma dizinindeki değişiklikleriniz çakışıyorsa, bu değişiklikleri kaydetmek için `-m` veya `--merge` bayrağını kullanabilirsiniz:
+		- `git switch -c <yeni_dal_adı>
+			- Eğer var olan bir dalı (branch) değiştirirken çalışma dizinindeki değişikliklerinizin üzerine yazılmasını istemiyorsanız, `-c` veya `--create` bayrağını kullanabilirsiniz
+- git merge:
+	- Açıklama: Bu komut, farklı Git dallarındaki değişiklikleri birleştirmek için kullanılır. Genellikle bir dalı diğer bir dala dahil etmek veya farklı dallardaki işleri bir araya getirmek amacıyla kullanılır.
+	- örnek kullanım:
+		- `git merge <hedef_dal_adı>
+			- Mevcut daldan (branch) başka bir dalı birleştirmek için:
+		- `git merge --no-edit <hedef_dal_adı>
+			- Birleştirme işlemi sırasında otomatik bir birleştirme (merge) mesajı oluşturmak için:
+		- `git branch -d <birleştirilen_dal_adı>
+			- Birleştirme işlemini tamamladıktan sonra, birleştirilen dalı silmek için:
+		- `git merge --ff-only <hedef_dal_adı>
+			- Eğer birleştirilen dal, üzerinde çalıştığınız dalı (örneğin `master` dalını) geride bırakıyorsa ve değişiklikler çakışmıyorsa, hızlı bir ileri sarma birleştirme (fast-forward merge) yapabilirsiniz:
+- git stash
+	- Açıklama: Bu komut, çalışma dizinindeki geçici değişiklikleri saklamak ve daha sonra geri yüklemek için kullanılır. Çalışma dizinindeki değişiklikleri geçici bir alana koyar, böylece başka bir işle uğraşırken bu değişiklikleri kaybetmezsiniz.
+	- örnek kullanım
+		- `git stash save "Geçici değişiklikler"
+			- Çalışma dizinindeki değişiklikleri saklamak için:
+		- `git stash list
+			- Stash listesini görüntülemek için:
+		- `git stash apply
+			- Stash'teki en son değişiklikleri geri yüklemek için:
+		- `git stash pop
+			- Stash'teki en son değişiklikleri geri yüklemek ve stash'ten çıkarmak için:
+		- `git stash apply stash@{<stash_indeksi>}
+			- Belirli bir stash'i geri yüklemek için:
+		- `git stash drop
+			- Stash'teki değişiklikleri tamamen kaldırmak için:
+		- `git stash drop stash@{<stash_indeksi>}
+			- Belirli bir stash'i kaldırmak için:
+- git reset:
+	- Açıklama: Bu komut, bir önceki commit'e geri dönmek veya "staging area" (hazırlık bölgesi) ile çalışma dizinindeki değişiklikleri sıfırlamak için kullanılır. Ayrıca, geçmiş commitlere geri dönmek veya commit geçmişini düzenlemek için de kullanılabilir.
+	- örnek kullanım:
+		- `git reset --soft HEAD~1
+			- Son commit'i geri almak ve değişiklikleri çalışma dizininde tutmak için (bu, "staging area"ı temizler):
+		- `git reset --hard HEAD~1
+			- Son commit'i geri almak ve değişiklikleri çalışma dizininden de temizlemek için (bu, "staging area"ı ve çalışma dizinini temizler):
+		- `git reset --hard <hedef_commit_hash>
+			- Belirli bir commit'e geri dönmek için:
+		- `git reset
+			- "Staging area"ı temizlemek ve çalışma dizinindeki değişiklikleri korumak için:
+		- `git reset --hard
+			- "Staging area"ı temizlemek ve çalışma dizinindeki değişiklikleri korumamak için:
+- git revert
+	- Açıklama: Bu komut, geçmiş bir commit'i geri almanıza ve bu commit'in yaptığı değişiklikleri geri çekmenize olanak tanır. Farklı bir yaklaşımı vardır çünkü geçmiş commitleri silmez; bunun yerine yeni bir commit oluşturarak geçmiş değişiklikleri tersine çevirir.
+	- örnek kullanım
+		- `git revert <hedef_commit_hash>
+			- Belirli bir commit'i geri almak için:  
+			- Bu komut, hedef commit'in yaptığı değişiklikleri geri çevirir ve yeni bir "geri alma" commit'i oluşturur.
+		- `git revert <ilk_commit_hash>..<son_commit_hash>
+			- Birden fazla commit'i geri almak için: 
+			- Bu komut, belirtilen aralıktaki tüm commit'leri geri alır ve her biri için bir "geri alma" commit'i oluşturur.
+		- `git revert -m 1 <hedef_commit_hash>
+			- Bir geri alma commit'i oluştururken özel bir commit mesajı eklemek için: 
+			- `-m` seçeneği, commit'in ana dalını (main branch) belirtir ve birleştirme (merge) ile ilgili bir commit'i geri alırken kullanışlıdır.
+		- `git revert --edit <hedef_commit_hash>
+			- Revert işlemi sonrası yeni commit'in doğruluğunu onaylamak için:  
+			- Bu seçenek, commit'i geri almak için kullanılan düzenlemeyi açar, böylece yeni commit mesajını özelleştirebilirsiniz.
+- git push
+	- Açıklama: Bu komut, yerel Git depo içindeki değişiklikleri uzak bir Git sunucusuna göndermek için kullanılır. Yerelde yapılan commit'leri uzak sunucuya yükler.
+	- örnek kullanım
+		- git push <uzak_sunucu> <uzak_dal>
+- git fetch
+	- Açıklama: Bu komut, uzak bir Git sunucusundan güncellemeleri çeker, ancak yerel çalışma dizininde herhangi bir değişiklik yapmaz. Bu, uzak sunucudaki yeni commit'leri yerelde görmek için kullanılır.
+	- örnek kullanım
+		- git fetch <uzak_sunucu>
+- git pull
+	- Açıklama: Bu komut, uzak sunucudan güncellemeleri çeker ve bunları otomatik olarak yerel çalışma dizinine uygular. Yani, `git fetch` ve `git merge` işlemlerini birleştirir.
+	- örnek kullanım
+		- git pull <uzak_sunucu> <uzak_dal>
+- git ignore
+	- Açıklama: Bu komut, Git tarafından izlenmeyen ve depolanmayan dosyaları veya dizinleri belirlemek için kullanılır. Genellikle, özel veya geçici dosyaları ve dizinleri Git deposuna dahil etmek istemezsiniz.
+	- Kullanım: `.gitignore` adında bir dosya oluşturup bu dosyanın içine hangi dosyaların veya dizinlerin Git tarafından takip edilmemesi gerektiğini listelemek için kullanılır. Dosya veya dizin adlarını belirtirken joker karakterleri de kullanabilirsiniz.
+	- örnek kullanım:
+		- Örnek .gitignore dosyası 
+		-  Bu dosyayı yoksay 
+		- `config.ini 
+		- Tüm .log uzantılı dosyaları yoksay 
+		-   `*.log 
+		- tmp dizinini yoksay 
+		-  `tmp/
+- git remote
+	- Açıklama: Bu komut, bir Git deposu ile ilişkilendirilmiş uzak depoları (remote repositories) listelemenize, eklemenize, düzenlemenize veya silmenize olanak tanır. Uzak depolar, projenizi uzak sunucularda barındırabileceğiniz ve işbirliği yapabileceğiniz yerlerdir.
+	- örnek kullanım
+		-  `git remote
+			- Tüm uzak depoları listelemek için:
+		-  `git remote get-url <uzak_depo_adı>
+			- Bir uzak deponun (remote repository) URL'sini görüntülemek için:
+		-  `git remote add <uzak_depo_adı> <uzak_depo_URL>
+			- Yeni bir uzak depo eklemek için:
+		-  `git remote set-url <uzak_depo_adı> <yeni_URL>
+			- Bir uzak depoyu düzenlemek için:
+		-  `git remote remove <uzak_depo_adı>
+			- Bir uzak depoyu silmek için:
+		-  `git remote show <uzak_depo_adı>
+			- Uzak depoların ayrıntılı bilgilerini görmek için:
+		-  `git remote show <uzak_depo_adı>
+			- Tüm uzak depoların URL'lerini görmek için:
